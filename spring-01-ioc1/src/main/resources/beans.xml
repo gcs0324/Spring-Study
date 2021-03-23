@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mysqlImpl" class="com.kuang.dao.UserDaoMysqlImpl"/>
+    <bean id="orcalImpl" class="com.kuang.dao.UserDaoOracleImpl"/>
+
+    <bean id="userServiceImpl" class="com.kuang.service.UserServiceImpl">
+        <!--
+        ref: 引用Spring容器中创建好的对象
+        value: 具体的值，具体数据类型
+
+        如果想要改成mysql实现
+        只需要修改这个配置文件中的ref，不需要修改代码
+        -->
+        <property name="userDao" ref="orcalImpl"/>
+    </bean>
+</beans>
